@@ -22,7 +22,7 @@ export function Trust() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 group cursor-help"
+              className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4 group"
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-gold blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
