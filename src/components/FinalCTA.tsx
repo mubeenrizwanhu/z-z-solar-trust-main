@@ -1,84 +1,128 @@
 import { useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Sparkles, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function FinalCTA() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", email: "", address: "" });
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    // Simulate API delay
+    await new Promise(r => setTimeout(r, 1500));
     setSubmitted(true);
+    setLoading(false);
   };
 
   return (
-    <section id="book" className="relative py-20 md:py-28 bg-navy overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" aria-hidden />
-      <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-gold/8 blur-3xl pointer-events-none" aria-hidden />
+    <section id="book" className="relative py-24 md:py-32 bg-navy overflow-hidden">
+      {/* Immersive Background */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
+      <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gold/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-white/5 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/4" />
 
       <div className="container-x relative">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-6 text-white">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-[12px] font-medium text-white/80">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-              Free, no-pressure consultation
-            </div>
-            <h2 className="mt-5 font-display font-bold text-[2rem] sm:text-[2.5rem] lg:text-[2.85rem] leading-[1.08] text-white tracking-tight">
-              Ready to see what solar looks like for your home?
-            </h2>
-            <p className="mt-5 text-[16.5px] text-white/75 max-w-xl leading-relaxed">
-              Speak with Z&amp;Z Renewable to review your property, goals, and solar options. No obligation — just a clear plan.
-            </p>
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          <div className="lg:col-span-6">
+             <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+             >
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[12px] font-black text-gold uppercase tracking-[0.2em] mb-8">
+                  <Sparkles className="h-4 w-4" />
+                  Limited Availability for 2026
+                </div>
+                
+                <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.1] tracking-tight mb-8">
+                  Secure Your <br /> Property's <span className="text-gold italic">Energy Future.</span>
+                </h2>
+                
+                <p className="text-xl text-white/60 font-medium leading-relaxed mb-12 max-w-xl">
+                  Take the first step toward true energy independence. Our high-fidelity consultation process eliminates variables and provides absolute clarity.
+                </p>
 
-            <ul className="mt-8 space-y-3">
-              {["Personalized system recommendation", "Transparent financing review", "Honest answers, no high pressure"].map((t) => (
-                <li key={t} className="flex items-center gap-3 text-[15px] text-white/85">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gold text-navy">
-                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                  </span>
-                  {t}
-                </li>
-              ))}
-            </ul>
+                <div className="grid sm:grid-cols-2 gap-8">
+                   {[
+                     { icon: ShieldCheck, title: "No Obligations", desc: "Just a deep-dive engineering review." },
+                     { icon: ShieldCheck, title: "Fixed Pricing", desc: "Locked-in rates with zero hidden fees." }
+                   ].map((item, i) => (
+                     <div key={i} className="flex gap-4">
+                        <item.icon className="h-6 w-6 text-gold shrink-0" />
+                        <div>
+                           <div className="text-white font-bold text-lg mb-1">{item.title}</div>
+                           <div className="text-white/40 text-sm font-medium">{item.desc}</div>
+                        </div>
+                     </div>
+                   ))}
+                </div>
+             </motion.div>
           </div>
 
-          <div className="lg:col-span-6 lg:pl-8">
-            <div className="rounded-2xl bg-white p-6 md:p-8 shadow-2xl border border-white/10">
-              {!submitted ? (
-                <>
-                  <h3 className="font-display font-semibold text-navy text-[1.25rem]">Book Your Free Solar Consultation</h3>
-                  <p className="text-sm text-muted-foreground mt-1.5">Takes under a minute. We'll reach out to schedule.</p>
-                  <form onSubmit={onSubmit} className="mt-6 space-y-4">
-                    <Field label="Full name" id="name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <Field label="Phone" id="phone" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
-                      <Field label="Email" id="email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
-                    </div>
-                    <Field label="Home address" id="address" value={form.address} onChange={(v) => setForm({ ...form, address: v })} />
-
-                    <button
-                      type="submit"
-                      className="group mt-2 inline-flex w-full h-13 py-3.5 items-center justify-center gap-2 rounded-[10px] bg-gold font-semibold text-navy text-[15px] shadow-lg hover:bg-gold-deep hover:-translate-y-0.5 transition-all"
+          <div className="lg:col-span-6">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -inset-4 bg-white/5 rounded-[3rem] blur-2xl" />
+              <div className="relative glass p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl">
+                <AnimatePresence mode="wait">
+                  {!submitted ? (
+                    <motion.div
+                      key="form"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
                     >
-                      Book Your Free Solar Consultation
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </button>
-                    <p className="text-[12px] text-muted-foreground text-center">
-                      Schedule a consultation, review your property, get expert recommendations.
-                    </p>
-                  </form>
-                </>
-              ) : (
-                <div className="py-10 text-center">
-                  <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-success/10 text-success">
-                    <Check className="h-7 w-7" strokeWidth={2.5} />
-                  </div>
-                  <h3 className="mt-5 font-display font-semibold text-navy text-[1.2rem]">Request received</h3>
-                  <p className="mt-2 text-sm text-muted-foreground max-w-sm mx-auto">
-                    A Z&amp;Z Renewable specialist will reach out shortly to schedule your consultation.
-                  </p>
-                </div>
-              )}
-            </div>
+                      <div className="mb-10 text-center lg:text-left">
+                        <h3 className="text-3xl font-black text-white mb-2">Initialize Your Study</h3>
+                        <p className="text-white/50 font-medium">A specialist will synchronize with your schedule today.</p>
+                      </div>
+                      
+                      <form onSubmit={onSubmit} className="space-y-6">
+                        <Field label="Homeowner Name" id="name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
+                        <div className="grid sm:grid-cols-2 gap-6">
+                          <Field label="Direct Line" id="phone" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
+                          <Field label="Email Address" id="email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
+                        </div>
+                        <Field label="Full Residence Address" id="address" value={form.address} onChange={(v) => setForm({ ...form, address: v })} />
+
+                        <button
+                          type="submit"
+                          disabled={loading}
+                          className="group relative h-16 w-full overflow-hidden rounded-2xl bg-gold font-black text-navy text-lg shadow-xl shadow-gold/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                        >
+                          <div className={`absolute inset-0 bg-navy transition-transform duration-500 origin-left ${loading ? 'scale-x-full' : 'scale-x-0'}`} />
+                          <span className={`relative z-10 flex items-center justify-center gap-3 ${loading ? 'text-white' : 'text-navy'}`}>
+                            {loading ? "Initializing..." : "Submit Energy Study Request"}
+                            {!loading && <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />}
+                          </span>
+                        </button>
+                      </form>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="py-12 text-center"
+                    >
+                      <div className="mx-auto h-20 w-20 rounded-full bg-gold/10 flex items-center justify-center mb-8 border border-gold/20">
+                         <Check className="h-10 w-10 text-gold" strokeWidth={3} />
+                      </div>
+                      <h3 className="text-3xl font-black text-white mb-4">Study Request Active</h3>
+                      <p className="text-white/50 font-medium max-w-sm mx-auto leading-relaxed">
+                        Data received. A Z&Z analyst is reviewing your property profile. Stand by for contact.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -100,8 +144,8 @@ function Field({
   onChange: (v: string) => void;
 }) {
   return (
-    <div>
-      <label htmlFor={id} className="block text-[13px] font-medium text-navy mb-1.5">
+    <div className="group">
+      <label htmlFor={id} className="block text-[11px] font-black text-white/40 uppercase tracking-[0.1em] mb-2 group-focus-within:text-gold transition-colors">
         {label}
       </label>
       <input
@@ -110,7 +154,7 @@ function Field({
         required
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full h-11 rounded-[10px] border border-border bg-white px-3.5 text-[15px] text-navy placeholder:text-muted-foreground/60 focus:outline-none focus:border-navy focus:ring-2 focus:ring-gold/30 transition"
+        className="w-full h-12 rounded-xl border border-white/10 bg-white/5 px-4 text-[15px] font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-gold/50 focus:bg-white/10 transition-all"
       />
     </div>
   );
