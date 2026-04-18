@@ -18,10 +18,10 @@ This document outlines the proposed improvements to transform the Z&Z Renewable 
 - [x] Implementation of a Global Grain/Noise texture for depth.
 
 ### Phase 2: Core Component Overhaul
-- [ ] **Dynamic Header**: Auto-collapsing glassmorphism header with scroll-triggered styling.
-- [ ] **Hero 2.0**: Parallax image/video background, staggered text entry, and magnetic primary CTA.
-- [ ] **The "Bento" Advantage**: Restructure the "Why Us" section into a modern Bento Grid.
-- [ ] **Interactive Savings Calculator**: Visualized data charts and interactive ROI projections.
+- [x] **Dynamic Header**: Auto-collapsing glassmorphism header with scroll-triggered styling.
+- [x] **Hero 2.0**: Parallax image/video background, staggered text entry, and magnetic primary CTA.
+- [x] **The "Bento" Advantage**: Restructure the "Why Us" section into a modern Bento Grid.
+- [x] **Interactive Savings Calculator**: Visualized data charts and interactive ROI projections.
 
 ### Phase 3: Social Proof & Validation
 - [ ] **Draggable Reviews**: Fluid carousel with high-quality client testimonials.

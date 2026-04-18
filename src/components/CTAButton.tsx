@@ -1,32 +1,40 @@
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 type Props = {
   className?: string;
   size?: "sm" | "md" | "lg";
+  variant?: "primary" | "ghost";
   children?: React.ReactNode;
 };
 
-export function CTAButton({ className, size = "md", children = "Book Your Free Solar Consultation" }: Props) {
+export function CTAButton({ className, size = "md", variant = "primary", children = "Book Your Free Digital Review" }: Props) {
   const sizes = {
-    sm: "h-10 px-4 text-sm",
-    md: "h-12 px-6 text-[15px]",
-    lg: "h-14 px-7 text-base",
+    sm: "h-11 px-5 text-[13px]",
+    md: "h-14 px-8 text-[15px]",
+    lg: "h-16 px-10 text-lg",
   };
+
+  const variants = {
+    primary: "bg-gold text-navy shadow-lg shadow-gold/20 hover:bg-gold-deep border border-gold/50",
+    ghost: "bg-white/5 hover:bg-white/10 text-navy/70 border border-navy/10 backdrop-blur-sm",
+  };
+
   return (
-    <a
+    <motion.a
       href="#book"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       className={cn(
-        "group inline-flex items-center justify-center gap-2 rounded-[10px] bg-gold font-semibold text-navy",
-        "shadow-[0_8px_24px_-8px_color-mix(in_oklab,var(--gold)_55%,transparent)]",
-        "transition-all duration-200 hover:bg-gold-deep hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--gold)_65%,transparent)]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2",
+        "group inline-flex items-center justify-center gap-2 rounded-2xl font-bold transition-all duration-300",
+        variants[variant],
         sizes[size],
         className
       )}
     >
       {children}
-      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-    </a>
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+    </motion.a>
   );
 }
