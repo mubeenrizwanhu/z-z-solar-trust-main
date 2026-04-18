@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Providers } from "@/components/Providers";
 
 import appCss from "../styles.css?url";
 
@@ -56,8 +57,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
-        {children}
+      <body className="noise">
+        <Providers>
+          {children}
+        </Providers>
         <Scripts />
       </body>
     </html>

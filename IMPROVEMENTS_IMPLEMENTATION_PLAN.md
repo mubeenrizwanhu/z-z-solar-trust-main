@@ -11,11 +11,11 @@ This document outlines the proposed improvements to transform the Z&Z Renewable 
 ## Implementation Checklist
 
 ### Phase 1: Foundation & Design System
-- [ ] Integration of **Framer Motion** for state-of-the-art animations.
-- [ ] Introduction of **Lenis Smooth Scroll** for high-end navigation feel.
-- [ ] Typography update: **Outfit** for headings, **Inter** for body text.
-- [ ] Color Palette refinement: Ultra-vibrant OKLCH colors for "Energy Gold" and "Solar Navy".
-- [ ] Implementation of a Global Grain/Noise texture for depth.
+- [x] Integration of **Framer Motion** for state-of-the-art animations.
+- [x] Introduction of **Lenis Smooth Scroll** for high-end navigation feel.
+- [x] Typography update: **Outfit** for headings, **Inter** for body text.
+- [x] Color Palette refinement: Ultra-vibrant OKLCH colors for "Energy Gold" and "Solar Navy".
+- [x] Implementation of a Global Grain/Noise texture for depth.
 
 ### Phase 2: Core Component Overhaul
 - [ ] **Dynamic Header**: Auto-collapsing glassmorphism header with scroll-triggered styling.
