@@ -24,9 +24,9 @@ This document outlines the proposed improvements to transform the Z&Z Renewable 
 - [x] **Interactive Savings Calculator**: Visualized data charts and interactive ROI projections.
 
 ### Phase 3: Social Proof & Validation
-- [ ] **Draggable Reviews**: Fluid carousel with high-quality client testimonials.
-- [ ] **Project Gallery**: Immersive hover-gallery with video preview capabilities.
-- [ ] **Trust Badges**: Animated entry for certifications and warranty details.
+- [x] **Draggable Reviews**: Fluid carousel with high-quality client testimonials.
+- [x] **Project Gallery**: Immersive hover-gallery with video preview capabilities.
+- [x] **Trust Badges**: Animated entry for certifications and warranty details.
 
 ### Phase 4: Polish & Performance
 - [ ] Implementation of staggered entrance reveals for all sections.
