@@ -121,19 +121,19 @@ export function WhyUs() {
              whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
              transition={{ duration: 1, delay: 0.3 }}
-             className="md:col-span-2 lg:col-span-full mt-16 p-px rounded-[4rem] bg-gradient-to-br from-gold via-navy/20 to-gold shadow-2xl shadow-navy/5"
+             className="md:col-span-2 lg:col-span-full mt-12 p-px rounded-[2.5rem] bg-gradient-to-br from-gold via-navy/20 to-gold shadow-2xl shadow-navy/5 max-w-5xl mx-auto w-full"
           >
-            <div className="glass p-12 md:p-20 rounded-[3.9rem] flex flex-col lg:flex-row items-center justify-between gap-12 bg-white/60 relative overflow-hidden group font-display">
+            <div className="glass p-8 md:p-12 rounded-[2.4rem] flex flex-col lg:flex-row items-center justify-between gap-8 bg-white/60 relative overflow-hidden group font-display">
               <div className="relative z-10 text-center lg:text-left flex-1">
-                <h4 className="text-4xl md:text-6xl font-black text-navy mb-8 tracking-tighter">
+                <h4 className="text-2xl md:text-3xl font-black text-navy mb-2 tracking-tighter">
                   Ready to see your property's potential?
                 </h4>
-                <p className="text-navy/70 max-w-2xl text-xl font-medium mx-auto lg:mx-0 leading-relaxed">
-                  Our engineering team performs a deep-dive analysis of your home's orientation, shading, and structure before we even meet.
+                <p className="text-navy/70 max-w-xl text-base font-medium mx-auto lg:mx-0 leading-relaxed">
+                  Our engineering team performs a deep-dive analysis of your home's orientation, shading, and structure.
                 </p>
               </div>
               <div className="relative z-10 shrink-0">
-                <CTAButton size="lg" className="h-24 px-16 text-2xl shadow-2xl shadow-gold/40 hover:scale-105 active:scale-95 transition-all w-full md:w-auto font-bold uppercase tracking-widest" />
+                <CTAButton size="lg" className="shadow-2xl shadow-gold/40 hover:scale-105 active:scale-95 transition-all w-full md:w-auto font-bold uppercase tracking-tight" />
               </div>
               
               {/* Background Animation */}
