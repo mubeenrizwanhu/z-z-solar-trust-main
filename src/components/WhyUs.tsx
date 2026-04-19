@@ -74,7 +74,9 @@ function WhyItem({ it, i }: { it: typeof ITEMS[0], i: number }) {
           </div>
         </div>
         
-        <h3 className="text-3xl font-extrabold mb-6 leading-tight tracking-tight">{it.title}</h3>
+        <h3 className={`text-3xl font-extrabold mb-6 leading-tight tracking-tight ${it.isDark ? '!text-white' : 'text-navy'}`}>
+          {it.title}
+        </h3>
         
         <p className={`text-lg leading-relaxed font-medium transition-colors duration-500 ${it.isDark ? 'text-white/70 group-hover:text-white' : 'text-navy/70 group-hover:text-navy'}`}>
           {it.body}
@@ -82,7 +84,7 @@ function WhyItem({ it, i }: { it: typeof ITEMS[0], i: number }) {
 
         {/* Dynamic Accent Line */}
         <div className={`mt-auto pt-10`}>
-          <div className={`h-1 w-12 rounded-full transition-all duration-500 group-hover:w-24 ${it.isDark ? 'bg-white/20' : 'bg-navy/10'} group-hover:bg-gold`} />
+          <div className={`h-1 w-12 rounded-full transition-all duration-500 group-hover:w-24 ${it.isDark ? 'bg-white/20' : 'bg-navy/10'} ${it.title === 'Customer Focused' ? 'group-hover:bg-navy' : 'group-hover:bg-gold'}`} />
         </div>
       </div>
 
@@ -92,6 +94,7 @@ function WhyItem({ it, i }: { it: typeof ITEMS[0], i: number }) {
   );
 }
 
+
 export function WhyUs() {
   return (
     <section id="why" className="py-24 md:py-40 relative overflow-hidden bg-background">
@@ -100,7 +103,7 @@ export function WhyUs() {
       <div className="absolute bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-navy/5 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="container-x">
-        <div className="max-w-4xl mb-24 text-center md:text-left">
+        <div className="max-w-4xl mb-24 text-center md:text-left font-display">
           <SectionHeader
             eyebrow="Why Z&Z Renewable"
             title="The serious choice for homeowners who expect more."
@@ -120,17 +123,17 @@ export function WhyUs() {
              transition={{ duration: 1, delay: 0.3 }}
              className="md:col-span-2 lg:col-span-full mt-16 p-px rounded-[4rem] bg-gradient-to-br from-gold via-navy/20 to-gold shadow-2xl shadow-navy/5"
           >
-            <div className="glass p-12 md:p-20 rounded-[3.9rem] flex flex-col lg:flex-row items-center justify-between gap-12 bg-white/60 relative overflow-hidden group">
+            <div className="glass p-12 md:p-20 rounded-[3.9rem] flex flex-col lg:flex-row items-center justify-between gap-12 bg-white/60 relative overflow-hidden group font-display">
               <div className="relative z-10 text-center lg:text-left flex-1">
-                <h4 className="text-4xl md:text-6xl font-black text-navy mb-8 tracking-tighter font-display">
+                <h4 className="text-4xl md:text-6xl font-black text-navy mb-8 tracking-tighter">
                   Ready to see your property's potential?
                 </h4>
-                <p className="text-navy/70 max-w-2xl text-xl font-medium mx-auto lg:mx-0 leading-relaxed font-display">
+                <p className="text-navy/70 max-w-2xl text-xl font-medium mx-auto lg:mx-0 leading-relaxed">
                   Our engineering team performs a deep-dive analysis of your home's orientation, shading, and structure before we even meet.
                 </p>
               </div>
               <div className="relative z-10 shrink-0">
-                <CTAButton size="lg" className="h-24 px-16 text-2xl shadow-2xl shadow-gold/40 hover:scale-105 active:scale-95 transition-all w-full md:w-auto font-display font-bold uppercase tracking-widest" />
+                <CTAButton size="lg" className="h-24 px-16 text-2xl shadow-2xl shadow-gold/40 hover:scale-105 active:scale-95 transition-all w-full md:w-auto font-bold uppercase tracking-widest" />
               </div>
               
               {/* Background Animation */}
@@ -142,5 +145,6 @@ export function WhyUs() {
     </section>
   );
 }
+
 
 
