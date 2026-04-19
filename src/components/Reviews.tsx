@@ -182,22 +182,39 @@ export function Reviews() {
       </div>
 
       <div className="container-x mt-24 md:mt-40 relative z-10">
-        <div className="flex flex-col items-center gap-14">
+        <div className="flex flex-col items-center gap-12">
           <div className="h-px w-32 bg-gold/30" />
-          <div className="flex flex-wrap justify-center items-center gap-x-16 md:gap-x-24 gap-y-12">
-            {["Google Review", "Yelp Trusted", "EnergySage Choice", "SolarReviews"].map((p) => (
-              <div key={p} className="flex flex-col items-center gap-3 group cursor-default">
-                <div className="text-[11px] md:text-[12px] font-black text-navy/20 group-hover:text-gold-deep transition-all duration-700 uppercase tracking-[0.45em] text-center">{p}</div>
-                <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="w-1.5 h-1.5 rounded-full bg-gold/40" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          
+          <motion.a 
+            href="#" 
+            onClick={(e) => e.preventDefault()}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            className="group flex flex-col items-center gap-4 cursor-pointer"
+          >
+            <div className="flex items-center gap-3">
+              <div className="h-px w-8 bg-gold-deep/20 group-hover:w-12 transition-all duration-500" />
+              <span className="text-[12px] md:text-[13px] font-black text-navy/40 group-hover:text-gold-deep transition-all duration-500 uppercase tracking-[0.5em]">
+                Read More Google Reviews
+              </span>
+              <div className="h-px w-8 bg-gold-deep/20 group-hover:w-12 transition-all duration-500" />
+            </div>
+            
+            <div className="flex gap-1.5">
+              {[...Array(5)].map((_, i) => (
+                <motion.div 
+                  key={i} 
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.3, 1, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                  className="w-2 h-2 rounded-full bg-gold/40 shadow-[0_0_8px_rgba(206,174,103,0.2)]" 
+                />
+              ))}
+            </div>
+          </motion.a>
         </div>
       </div>
+
     </section>
   );
 }
