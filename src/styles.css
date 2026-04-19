@@ -168,5 +168,53 @@
   .text-glow {
     text-shadow: 0 0 20px color-mix(in oklab, var(--gold) 40%, transparent);
   }
+
+  /* Animated White/Light Blue Gradient */
+  .bg-animated-white {
+    background: linear-gradient(135deg, #f8fafc, #eff6ff, #fdfcfb, #f1f5f9);
+    background-size: 400% 400%;
+    animation: gradient-animation 8s ease infinite;
+    position: relative;
+  }
+
+  @keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Manual Typography for Policies */
+  .policy-content {
+    color: var(--navy);
+    line-height: 1.8;
+  }
+  .policy-content strong {
+    color: var(--gold) !important;
+    font-weight: 800;
+  }
+  .policy-content em {
+    color: var(--gold) !important;
+    font-style: italic;
+    font-weight: 600;
+  }
+  .policy-content h2 {
+    color: var(--navy);
+    font-family: var(--font-display);
+    border-left: 4px solid var(--gold);
+    padding-left: 1.5rem;
+    margin-left: -1.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+  }
+  .policy-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .policy-content li {
+    margin-bottom: 0.5rem;
+  }
 }
 

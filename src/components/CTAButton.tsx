@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 
 type Props = {
   className?: string;
@@ -22,19 +23,24 @@ export function CTAButton({ className, size = "md", variant = "primary", childre
   };
 
   return (
-    <motion.a
-      href="#book"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className={cn(
-        "group inline-flex items-center justify-center gap-2 rounded-2xl font-bold transition-all duration-300",
-        variants[variant],
-        sizes[size],
-        className
-      )}
+    <Link
+      to="/"
+      hash="book"
+      className={cn("contents")}
     >
-      {children}
-      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-    </motion.a>
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className={cn(
+          "group inline-flex items-center justify-center gap-2 rounded-2xl font-bold transition-all duration-300 cursor-pointer",
+          variants[variant],
+          sizes[size],
+          className
+        )}
+      >
+        {children}
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </motion.div>
+    </Link>
   );
 }

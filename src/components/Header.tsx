@@ -4,14 +4,15 @@ import { Logo } from "./Logo";
 import { CTAButton } from "./CTAButton";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 
 const NAV = [
-  { label: "Home", href: "#home" },
-  { label: "Why Z&Z", href: "#why" },
-  { label: "Process", href: "#process" },
-  { label: "Projects", href: "#projects" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Home", to: "/", hash: "home" },
+  { label: "Why Z&Z", to: "/", hash: "why" },
+  { label: "Process", to: "/", hash: "process" },
+  { label: "Projects", to: "/", hash: "projects" },
+  { label: "Reviews", to: "/", hash: "reviews" },
+  { label: "FAQ", to: "/", hash: "faq" },
 ];
 
 export function Header() {
@@ -50,15 +51,20 @@ export function Header() {
           
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map((n) => (
-              <motion.a
-                key={n.href}
-                href={n.href}
+              <motion.div
+                key={n.hash}
                 whileHover={{ y: -2 }}
-                className="text-[14px] font-semibold text-navy/70 hover:text-navy transition-colors relative group"
+                className="relative group"
               >
-                {n.label}
+                <Link
+                  to={n.to}
+                  hash={n.hash}
+                  className="text-[14px] font-semibold text-navy/70 hover:text-navy transition-colors"
+                >
+                  {n.label}
+                </Link>
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
-              </motion.a>
+              </motion.div>
             ))}
           </nav>
 
@@ -91,17 +97,21 @@ export function Header() {
           >
             <div className="container-x py-8 flex flex-col gap-4">
               {NAV.map((n, i) => (
-                <motion.a
-                  key={n.href}
-                  href={n.href}
+                <motion.div
+                  key={n.hash}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  onClick={() => setOpen(false)}
-                  className="text-2xl font-bold text-navy hover:text-gold transition-colors"
                 >
-                  {n.label}
-                </motion.a>
+                  <Link
+                    to={n.to}
+                    hash={n.hash}
+                    onClick={() => setOpen(false)}
+                    className="text-2xl font-bold text-navy hover:text-gold transition-colors block"
+                  >
+                    {n.label}
+                  </Link>
+                </motion.div>
               ))}
               <motion.div 
                 initial={{ opacity: 0 }}

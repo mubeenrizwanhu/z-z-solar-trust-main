@@ -1,5 +1,6 @@
 import { Logo } from "./Logo";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export function Footer() {
   return (
@@ -45,8 +46,8 @@ export function Footer() {
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-4 items-center justify-between text-[12.5px] text-white/55">
           <div>© {new Date().getFullYear()} Z&amp;Z Renewable. All rights reserved.</div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-gold transition-colors">Terms</a>
+            <Link to="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-gold transition-colors">Terms</Link>
           </div>
         </div>
       </div>
