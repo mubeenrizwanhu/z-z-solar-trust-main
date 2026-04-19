@@ -23,23 +23,23 @@ export function Hero() {
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 5]);
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       ref={containerRef}
       className="relative pt-32 md:pt-48 pb-24 md:pb-32 overflow-hidden"
     >
       <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden />
-      
+
       {/* Dynamic Background Blobs */}
-      <motion.div 
+      <motion.div
         style={{ y: y1 }}
-        className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-gold/10 blur-[120px] pointer-events-none" 
-        aria-hidden 
+        className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-gold/10 blur-[120px] pointer-events-none"
+        aria-hidden
       />
-      <motion.div 
+      <motion.div
         style={{ y: y2 }}
-        className="absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-navy/5 blur-[100px] pointer-events-none" 
-        aria-hidden 
+        className="absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-navy/5 blur-[100px] pointer-events-none"
+        aria-hidden
       />
 
       <div className="container-x relative">
@@ -55,21 +55,21 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
               </span>
-              Booking April 2026 Home Reviews
+              Booking {new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date())} {new Date().getFullYear()} Home Reviews
             </motion.div>
 
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mt-8 font-display font-black tracking-tight text-5xl sm:text-6xl lg:text-7xl leading-[0.95] text-navy"
             >
-              Engineered <span className="text-gold italic">Solar</span> <br /> 
+              Engineered <span className="text-gold italic">Solar</span> <br />
               for Premium <br />
               Homeowners.
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -78,7 +78,7 @@ export function Hero() {
               Custom-built residential solar systems for those who demand engineering excellence, total transparency, and a white-glove installation experience.
             </motion.p>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -100,15 +100,15 @@ export function Hero() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
               className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8"
             >
               {TRUST.map((t, i) => (
-                <motion.div 
-                  key={t.label} 
+                <motion.div
+                  key={t.label}
                   whileHover={{ y: -5 }}
                   className="flex flex-col gap-3 group"
                 >
@@ -121,13 +121,13 @@ export function Hero() {
             </motion.div>
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-5 relative"
           >
-            <motion.div 
+            <motion.div
               style={{ rotate }}
               className="relative rounded-3xl overflow-hidden border border-border shadow-[0_40px_100px_-20px_rgba(14,34,56,0.3)] group"
             >
@@ -137,8 +137,8 @@ export function Hero() {
                 className="h-full w-full object-cover aspect-[4/5] scale-105 group-hover:scale-100 transition-transform duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
@@ -149,23 +149,23 @@ export function Hero() {
               </motion.div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
               className="absolute -bottom-10 -left-10 glass p-8 rounded-2xl shadow-2xl border border-white/20 max-w-[280px]"
             >
               <div className="flex items-center gap-4 mb-4">
-                 <div className="flex -space-x-3">
-                   {[1,2,3,4].map(i => (
-                     <div key={i} className="h-10 w-10 rounded-full border-2 border-white bg-muted overflow-hidden">
-                       <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="Client" />
-                     </div>
-                   ))}
-                 </div>
-                 <div className="text-sm font-bold text-navy leading-tight">
-                   Trusted by <br /> 450+ Homes
-                 </div>
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className="h-10 w-10 rounded-full border-2 border-white bg-muted overflow-hidden">
+                      <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Client" />
+                    </div>
+                  ))}
+                </div>
+                <div className="text-sm font-bold text-navy leading-tight">
+                  Trusted by <br /> 450+ Homes
+                </div>
               </div>
               <div className="flex gap-1 mb-2">
                 {[...Array(5)].map((_, i) => (

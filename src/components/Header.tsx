@@ -37,8 +37,8 @@ export function Header() {
       await navigate({ to });
       // Short delay to ensure page is loaded before scrolling
       setTimeout(() => {
-         const el = document.getElementById(hash);
-         el?.scrollIntoView({ behavior: "smooth" });
+        const el = document.getElementById(hash);
+        el?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     } else {
       // If already on home page, just scroll
@@ -60,16 +60,16 @@ export function Header() {
       )}
     >
       <div className="container-x">
-        <div 
+        <div
           className={cn(
             "flex h-16 items-center justify-between px-6 rounded-2xl transition-all duration-500",
-            scrolled 
-              ? "glass shadow-[0_8px_32px_rgba(0,0,0,0.08)]" 
+            scrolled
+              ? "glass shadow-[0_8px_32px_rgba(0,0,0,0.08)]"
               : "bg-transparent"
           )}
         >
           <Logo />
-          
+
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map((n) => (
               <motion.div
@@ -90,12 +90,12 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-             <CTAButton size="sm" variant="ghost" className="text-navy/70 font-semibold uppercase tracking-wider text-[11px]">
-               Login
-             </CTAButton>
-             <CTAButton size="sm" className="shadow-lg shadow-gold/20">
-               Get Started
-             </CTAButton>
+            <CTAButton size="sm" variant="ghost" className="text-navy/70 font-semibold uppercase tracking-wider text-[11px]">
+              Login
+            </CTAButton>
+            <CTAButton size="sm" className="shadow-lg shadow-gold/20">
+              Get Started
+            </CTAButton>
           </div>
 
           <button
@@ -133,7 +133,7 @@ export function Header() {
                   </Link>
                 </motion.div>
               ))}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
