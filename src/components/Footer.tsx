@@ -7,29 +7,11 @@ export function Footer() {
     <footer className="bg-navy text-white/80">
       <div className="container-x py-14 md:py-16">
         <div className="grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-5">
+          <div className="md:col-span-8">
             <Logo variant="white" />
             <p className="mt-5 text-[14.5px] text-white/65 max-w-sm leading-relaxed">
               Premium residential solar design and installation. Engineered systems, transparent financing, white-glove service.
             </p>
-          </div>
-
-          <div className="md:col-span-3">
-            <h4 className="font-display font-semibold text-white text-sm uppercase tracking-[0.14em]">Navigate</h4>
-            <ul className="mt-4 space-y-2.5 text-[14.5px]">
-              {[
-                ["Home", "#home"],
-                ["Why Z&Z", "#why"],
-                ["Process", "#process"],
-                ["Projects", "#projects"],
-                ["Reviews", "#reviews"],
-                ["FAQ", "#faq"],
-              ].map(([l, h]) => (
-                <li key={h}>
-                  <a href={h} className="text-white/65 hover:text-gold transition-colors">{l}</a>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div className="md:col-span-4">
