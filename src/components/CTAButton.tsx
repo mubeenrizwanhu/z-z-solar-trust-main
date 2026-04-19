@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate, useLocation } from "@tanstack/react-router";
 
 type Props = {
   className?: string;
@@ -11,6 +11,9 @@ type Props = {
 };
 
 export function CTAButton({ className, size = "md", variant = "primary", children = "Book Your Free Digital Review" }: Props) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const sizes = {
     sm: "h-11 px-5 text-[13px]",
     md: "h-14 px-8 text-[15px]",
@@ -22,10 +25,27 @@ export function CTAButton({ className, size = "md", variant = "primary", childre
     ghost: "bg-white/5 hover:bg-white/10 text-navy/70 border border-navy/10 backdrop-blur-sm",
   };
 
+  const handleNavClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const to = "/";
+    const hash = "book";
+
+    if (location.pathname !== to) {
+      await navigate({ to });
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        el?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      const el = document.getElementById(hash);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <Link
       to="/"
-      hash="book"
+      onClick={handleNavClick}
       className={cn("contents")}
     >
       <motion.div

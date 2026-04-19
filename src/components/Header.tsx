@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 import { CTAButton } from "./CTAButton";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate, useLocation } from "@tanstack/react-router";
 
 const NAV = [
   { label: "Home", to: "/", hash: "home" },
@@ -18,6 +18,8 @@ const NAV = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -25,6 +27,25 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleNavClick = async (e: React.MouseEvent, to: string, hash: string) => {
+    e.preventDefault();
+    setOpen(false);
+
+    if (location.pathname !== to) {
+      // If not on home page, navigate to home first
+      await navigate({ to });
+      // Short delay to ensure page is loaded before scrolling
+      setTimeout(() => {
+         const el = document.getElementById(hash);
+         el?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      // If already on home page, just scroll
+      const el = document.getElementById(hash);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <motion.header
@@ -58,7 +79,7 @@ export function Header() {
               >
                 <Link
                   to={n.to}
-                  hash={n.hash}
+                  onClick={(e) => handleNavClick(e, n.to, n.hash)}
                   className="text-[14px] font-semibold text-navy/70 hover:text-navy transition-colors"
                 >
                   {n.label}
@@ -105,8 +126,7 @@ export function Header() {
                 >
                   <Link
                     to={n.to}
-                    hash={n.hash}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => handleNavClick(e, n.to, n.hash)}
                     className="text-2xl font-bold text-navy hover:text-gold transition-colors block"
                   >
                     {n.label}
