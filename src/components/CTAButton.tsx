@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Link, useNavigate, useLocation } from "@tanstack/react-router";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 type Props = {
   className?: string;
@@ -31,7 +31,7 @@ export function CTAButton({ className, size = "md", variant = "primary", childre
     const hash = "book";
 
     if (location.pathname !== to) {
-      await navigate({ to });
+      navigate(to);
       setTimeout(() => {
         const el = document.getElementById(hash);
         el?.scrollIntoView({ behavior: "smooth" });

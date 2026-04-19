@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 import { CTAButton } from "./CTAButton";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useNavigate, useLocation } from "@tanstack/react-router";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const NAV = [
   { label: "Home", to: "/", hash: "home" },
@@ -34,7 +34,7 @@ export function Header() {
 
     if (location.pathname !== to) {
       // If not on home page, navigate to home first
-      await navigate({ to });
+      navigate(to);
       // Short delay to ensure page is loaded before scrolling
       setTimeout(() => {
         const el = document.getElementById(hash);
