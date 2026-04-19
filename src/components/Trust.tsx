@@ -39,8 +39,7 @@ export function Trust() {
         </div>
       </div>
       
-      {/* Subtle Scroll Hint or Separator */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-t from-gold/50 to-transparent hidden lg:block" />
     </section>
   );
 }
+
