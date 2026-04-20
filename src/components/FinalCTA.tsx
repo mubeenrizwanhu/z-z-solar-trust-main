@@ -90,13 +90,13 @@ export function FinalCTA() {
                       <form onSubmit={onSubmit} className="space-y-6">
                         <Field label="Homeowner Name" id="name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
                         <div className="grid sm:grid-cols-2 gap-6">
-                          <Field label="Direct Line" id="phone" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
+                          <Field label="Phone Number" id="phone" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
                           <Field label="Email Address" id="email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
                         </div>
                         <Field label="Full Residence Address" id="address" value={form.address} onChange={(v) => setForm({ ...form, address: v })} />
                         
                         <div className="group">
-                          <label className="flex items-center gap-2 text-[11px] font-black text-navy/40 uppercase tracking-[0.1em] mb-2 group-focus-within:text-gold transition-colors">
+                          <label className="flex items-center gap-2 text-[11px] font-black text-navy/40 uppercase tracking-[0.1em] mb-2 group-focus-within:text-sky-400 transition-colors">
                             <CalendarIcon className="h-3 w-3" />
                             Preferred Consultation Date
                           </label>
@@ -105,12 +105,12 @@ export function FinalCTA() {
                               <button
                                 type="button"
                                 className={cn(
-                                  "w-full h-12 rounded-xl border border-navy/10 bg-navy/5 px-4 text-left text-[15px] font-bold focus:outline-none focus:border-gold/50 focus:bg-navy/10 transition-all flex items-center justify-between",
+                                  "w-full h-12 rounded-xl border border-navy/10 bg-navy/5 px-4 text-left text-[15px] font-bold focus:outline-none focus:border-navy/50 focus:bg-navy/10 focus:text-navy transition-all flex items-center justify-between",
                                   !form.date ? "text-navy/50" : "text-navy"
                                 )}
                               >
                                 {form.date ? format(form.date, "PPP") : <span>Select a date</span>}
-                                <CalendarIcon className="h-4 w-4 text-navy/20 group-hover:text-gold transition-colors" />
+                                <CalendarIcon className="h-4 w-4 text-navy/20 group-hover:text-navy transition-colors" />
                               </button>
                             </PopoverTrigger>
                             <PopoverContent className="w-auto p-0 z-[100] rounded-2xl border-navy/10 shadow-2xl bg-white" align="start">
@@ -143,10 +143,10 @@ export function FinalCTA() {
                         <button
                           type="submit"
                           disabled={loading}
-                          className="group relative h-16 w-full overflow-hidden rounded-2xl bg-gold font-black text-navy text-lg shadow-xl shadow-gold/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                          className="group relative h-16 w-full overflow-hidden rounded-2xl bg-navy font-black text-white text-lg shadow-xl shadow-navy/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
                         >
-                          <div className={`absolute inset-0 bg-navy transition-transform duration-500 origin-left ${loading ? 'scale-x-full' : 'scale-x-0'}`} />
-                          <span className={`relative z-10 flex items-center justify-center gap-3 ${loading ? 'text-white' : 'text-navy'}`}>
+                          <div className={`absolute inset-0 bg-white/10 transition-transform duration-500 origin-left ${loading ? 'scale-x-full' : 'scale-x-0'}`} />
+                          <span className="relative z-10 flex items-center justify-center gap-3 text-white">
                             {loading ? "Initializing..." : "Initialize Your Study"}
                             {!loading && <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />}
                           </span>
@@ -160,8 +160,8 @@ export function FinalCTA() {
                       animate={{ opacity: 1, scale: 1 }}
                       className="py-12 text-center"
                     >
-                      <div className="mx-auto h-20 w-20 rounded-full bg-gold/10 flex items-center justify-center mb-8 border border-gold/20">
-                         <Check className="h-10 w-10 text-gold" strokeWidth={3} />
+                      <div className="mx-auto h-20 w-20 rounded-full bg-navy/10 flex items-center justify-center mb-8 border border-navy/20">
+                         <Check className="h-10 w-10 text-navy" strokeWidth={3} />
                       </div>
                       <h3 className="text-3xl font-black text-navy mb-4">Study Request Active</h3>
                       <p className="text-navy/50 font-medium max-w-sm mx-auto leading-relaxed">
@@ -194,7 +194,7 @@ function Field({
 }) {
   return (
     <div className="group">
-      <label htmlFor={id} className="block text-[11px] font-black text-navy/40 uppercase tracking-[0.1em] mb-2 group-focus-within:text-gold transition-colors">
+      <label htmlFor={id} className="block text-[11px] font-black text-navy/40 uppercase tracking-[0.1em] mb-2 group-focus-within:text-navy transition-colors">
         {label}
       </label>
       <input
@@ -203,7 +203,7 @@ function Field({
         required
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full h-12 rounded-xl border border-navy/10 bg-navy/5 px-4 text-[15px] font-bold text-navy placeholder:text-navy/20 focus:outline-none focus:border-gold/50 focus:bg-navy/10 transition-all"
+        className="w-full h-12 rounded-xl border border-navy/10 bg-navy/5 px-4 text-[15px] font-bold text-navy placeholder:text-navy/20 focus:outline-none focus:border-navy/40 focus:bg-navy/10 transition-all"
       />
     </div>
   );

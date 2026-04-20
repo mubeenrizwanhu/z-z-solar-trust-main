@@ -10,7 +10,7 @@ const FAQS = [
   },
   {
     q: "Do you offer financing?",
-    a: "Yes. We work with trusted financing partners and offer flexible options — including low or zero-down paths. Your consultant will help you compare what fits your home and goals.",
+    a: "Yes. We work with trusted financing partners and offer flexible options including low or zero-down paths. Your consultant will help you compare what fits your home and goals.",
   },
   {
     q: "What kind of warranty is included?",
@@ -35,28 +35,28 @@ export function FAQ() {
         <div className="max-w-2xl">
           <SectionHeader eyebrow="Intelligence" title="Critical answers." />
         </div>
-        
+
         <div className="mt-16 grid lg:grid-cols-12 gap-12 lg:gap-20">
           <div className="lg:col-span-5">
-             <div className="sticky top-32">
-                <p className="text-xl text-navy/60 font-medium leading-relaxed mb-10">
-                   If your question isn't covered here, our technical team is available for a deep-dive review during your property study.
-                </p>
-                <div className="flex items-center gap-4 p-6 bg-gold/5 rounded-3xl border border-gold/10">
-                   <div className="h-12 w-12 rounded-full bg-gold flex items-center justify-center text-navy font-black text-xl">?</div>
-                   <div className="flex-1">
-                      <div className="text-navy font-bold">Need direct support?</div>
-                      <div className="text-navy/60 text-sm font-semibold">Contact us at (555) 123-4567</div>
-                   </div>
+            <div className="sticky top-32">
+              <p className="text-xl text-navy/60 font-medium leading-relaxed mb-10">
+                If your question isn't covered here, our technical team is available for a deep-dive review during your property study.
+              </p>
+              <div className="flex items-center gap-4 p-6 bg-gold/5 rounded-3xl border border-gold/10">
+                <div className="h-12 w-12 rounded-full bg-gold flex items-center justify-center text-navy font-black text-xl">?</div>
+                <div className="flex-1">
+                  <div className="text-navy font-bold">Need direct support?</div>
+                  <div className="text-navy/60 text-sm font-semibold">Contact us at (555) 123-4567</div>
                 </div>
-             </div>
+              </div>
+            </div>
           </div>
 
           <div className="lg:col-span-7 space-y-4">
             {FAQS.map((f, i) => {
               const isOpen = open === i;
               return (
-                <motion.div 
+                <motion.div
                   key={f.q}
                   initial={false}
                   className={`rounded-[2rem] border transition-all duration-500 overflow-hidden ${isOpen ? 'bg-navy border-navy shadow-2xl' : 'bg-white border-border hover:border-gold/50'}`}
