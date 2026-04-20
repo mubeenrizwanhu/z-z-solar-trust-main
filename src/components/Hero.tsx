@@ -88,7 +88,6 @@ export function Hero() {
                 <div className="absolute -inset-1 bg-gold rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                 <CTAButton size="lg" className="relative h-16 px-10 text-lg group">
                   Start Your Review
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </CTAButton>
               </div>
               <div className="flex flex-col">

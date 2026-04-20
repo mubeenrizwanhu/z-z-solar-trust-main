@@ -59,10 +59,14 @@ export function Savings() {
 
             <div className="mt-12 flex items-center gap-6">
               <CTAButton size="lg" className="h-14 px-8" />
-              <button className="flex items-center gap-2 text-navy/60 font-bold text-sm hover:text-navy transition-colors">
+              <a 
+                href="/solar-roi-report.pdf" 
+                download="Solar_ROI_Analysis.pdf"
+                className="flex items-center gap-2 text-navy/60 font-bold text-sm hover:text-navy transition-colors"
+              >
                 <Info className="h-4 w-4" />
                 Download ROI PDF
-              </button>
+              </a>
             </div>
           </div>
 
