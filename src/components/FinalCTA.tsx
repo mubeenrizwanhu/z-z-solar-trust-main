@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { ArrowRight, Check, Sparkles, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, Sparkles, ShieldCheck, Calendar as CalendarIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { format, addMonths } from "date-fns";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Calendar } from "./ui/calendar";
+import { cn } from "@/lib/utils";
 
 export function FinalCTA() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", phone: "", email: "", address: "" });
+  const [form, setForm] = useState<{name: string, phone: string, email: string, address: string, date: Date | undefined}>({ name: "", phone: "", email: "", address: "", date: undefined });
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,8 +83,8 @@ export function FinalCTA() {
                       exit={{ opacity: 0 }}
                     >
                       <div className="mb-10 text-center lg:text-left">
-                        <h3 className="text-3xl font-black text-white mb-2">Initialize Your Study</h3>
-                        <p className="text-white/50 font-medium">A specialist will synchronize with your schedule today.</p>
+                        <h3 className="text-3xl font-black text-navy mb-2">Initialize Your Study</h3>
+                        <p className="text-navy/50 font-medium text-sm">A specialist will synchronize with your schedule today.</p>
                       </div>
                       
                       <form onSubmit={onSubmit} className="space-y-6">
@@ -90,6 +94,51 @@ export function FinalCTA() {
                           <Field label="Email Address" id="email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
                         </div>
                         <Field label="Full Residence Address" id="address" value={form.address} onChange={(v) => setForm({ ...form, address: v })} />
+                        
+                        <div className="group">
+                          <label className="flex items-center gap-2 text-[11px] font-black text-navy/40 uppercase tracking-[0.1em] mb-2 group-focus-within:text-gold transition-colors">
+                            <CalendarIcon className="h-3 w-3" />
+                            Preferred Consultation Date
+                          </label>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <button
+                                type="button"
+                                className={cn(
+                                  "w-full h-12 rounded-xl border border-navy/10 bg-navy/5 px-4 text-left text-[15px] font-bold focus:outline-none focus:border-gold/50 focus:bg-navy/10 transition-all flex items-center justify-between",
+                                  !form.date ? "text-navy/50" : "text-navy"
+                                )}
+                              >
+                                {form.date ? format(form.date, "PPP") : <span>Select a date</span>}
+                                <CalendarIcon className="h-4 w-4 text-navy/20 group-hover:text-gold transition-colors" />
+                              </button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0 z-[100] rounded-2xl border-navy/10 shadow-2xl bg-white" align="start">
+                              <Calendar
+                                mode="single"
+                                selected={form.date}
+                                onSelect={(d) => setForm({ ...form, date: d })}
+                                disabled={(date) => {
+                                  const today = new Date();
+                                  today.setHours(0, 0, 0, 0);
+                                  const maxDate = new Date();
+                                  maxDate.setMonth(maxDate.getMonth() + 3);
+                                  maxDate.setMonth(maxDate.getMonth() + 1, 0); // Last day of the 3rd month from now
+                                  maxDate.setHours(23, 59, 59, 999);
+                                  return date < today || date > maxDate;
+                                }}
+                                fromDate={new Date()}
+                                toDate={(() => {
+                                  const d = new Date();
+                                  d.setMonth(d.getMonth() + 3);
+                                  d.setMonth(d.getMonth() + 1, 0); // Last day of 3 months from now
+                                  return d;
+                                })()}
+                                initialFocus
+                              />
+                            </PopoverContent>
+                          </Popover>
+                        </div>
 
                         <button
                           type="submit"
@@ -98,7 +147,7 @@ export function FinalCTA() {
                         >
                           <div className={`absolute inset-0 bg-navy transition-transform duration-500 origin-left ${loading ? 'scale-x-full' : 'scale-x-0'}`} />
                           <span className={`relative z-10 flex items-center justify-center gap-3 ${loading ? 'text-white' : 'text-navy'}`}>
-                            {loading ? "Initializing..." : "Submit Energy Study Request"}
+                            {loading ? "Initializing..." : "Initialize Your Study"}
                             {!loading && <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />}
                           </span>
                         </button>
@@ -114,8 +163,8 @@ export function FinalCTA() {
                       <div className="mx-auto h-20 w-20 rounded-full bg-gold/10 flex items-center justify-center mb-8 border border-gold/20">
                          <Check className="h-10 w-10 text-gold" strokeWidth={3} />
                       </div>
-                      <h3 className="text-3xl font-black text-white mb-4">Study Request Active</h3>
-                      <p className="text-white/50 font-medium max-w-sm mx-auto leading-relaxed">
+                      <h3 className="text-3xl font-black text-navy mb-4">Study Request Active</h3>
+                      <p className="text-navy/50 font-medium max-w-sm mx-auto leading-relaxed">
                         Data received. A Z&Z analyst is reviewing your property profile. Stand by for contact.
                       </p>
                     </motion.div>
@@ -145,7 +194,7 @@ function Field({
 }) {
   return (
     <div className="group">
-      <label htmlFor={id} className="block text-[11px] font-black text-white/40 uppercase tracking-[0.1em] mb-2 group-focus-within:text-gold transition-colors">
+      <label htmlFor={id} className="block text-[11px] font-black text-navy/40 uppercase tracking-[0.1em] mb-2 group-focus-within:text-gold transition-colors">
         {label}
       </label>
       <input
@@ -154,8 +203,10 @@ function Field({
         required
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full h-12 rounded-xl border border-white/10 bg-white/5 px-4 text-[15px] font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-gold/50 focus:bg-white/10 transition-all"
+        className="w-full h-12 rounded-xl border border-navy/10 bg-navy/5 px-4 text-[15px] font-bold text-navy placeholder:text-navy/20 focus:outline-none focus:border-gold/50 focus:bg-navy/10 transition-all"
       />
     </div>
   );
 }
+
+
